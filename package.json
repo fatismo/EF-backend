@@ -1,0 +1,16 @@
+{
+  "name": "enait-chat-backend",
+  "version": "1.0.0",
+  "description": "Gemini backend with 5-key fallback chain",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

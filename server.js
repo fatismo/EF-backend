@@ -141,6 +141,18 @@ app.get('/', (req, res) => {
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
+const SERVER_URL = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
+
+  // Ping self every 14 minutes to prevent Render free tier from sleeping
+  setInterval(async () => {
+    try {
+      await fetch(`${SERVER_URL}/`);
+      console.log('🏓 Self-ping OK — server staying awake');
+    } catch (err) {
+      console.warn('⚠️ Self-ping failed:', err.message);
+    }
+  }, 14 * 60 * 1000); // 14 minutes
 });
